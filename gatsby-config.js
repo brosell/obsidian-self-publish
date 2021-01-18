@@ -2,5 +2,10 @@ module.exports = {
   siteMetadata: {
     title: 'My Notes',
   },
-  plugins: [`gatsby-theme-andy`],
+  plugins: [{
+    resolve: `gatsby-theme-andy`,
+    options: {
+      generateSlug: (str) => "BERT"
+    }
+  }],
 };

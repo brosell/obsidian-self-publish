@@ -1,26 +1,31 @@
-rm -rf ./.cache  ./content
+rm -rf ./.cache  ./content ./public
 mkdir ./content
+
 
 rm -rf ./export
 mkdir ./export
 
-# cp /mnt/c/Users/brl1/Google\ Drive/ObsidianNotes/Work/70_Maturing/* ./export
-# cp /mnt/c/Users/brl1/Google\ Drive/ObsidianNotes/Work/80_Mature/* ./export
-# cp /mnt/c/Users/brl1/Google\ Drive/ObsidianNotes/Work/90_MOC/* ./export
-# cp /mnt/c/Users/brl1/Google\ Drive/ObsidianNotes/Work/99_Start/* ./export
-# cp /mnt/c/Users/brl1/Google\ Drive/ObsidianNotes/Work/60_Draft/* ./export
+NOTES_ROOT="/mnt/c/Users/bert/Google Drive/ObsidianNotes/Work"
 
+#NOTES_ROOT="./vault"
 
-cp /mnt/c/Users/brl1/Google\ Drive/ObsidianNotes/Work/*/* ./export
-cp /mnt/c/Users/brl1/Google\ Drive/ObsidianNotes/Work/* ./export
+cp "$NOTES_ROOT"/70_Maturing/* ./export
+cp "$NOTES_ROOT"/80_Mature/* ./export
+# cp "$NOTES_ROOT"/90_MOC/* ./export
+cp "$NOTES_ROOT"/99_Start/* ./export
+# cp "$NOTES_ROOT"/60_Draft/* ./export
+# cp "$NOTES_ROOT"/* ./export
+
+# cp "$NOTES_ROOT"/*/* ./export
+# cp "$NOTES_ROOT"/* ./export
 
 # cp ./export/* ./content
-/mnt/c/tools/obsidian-export_Linux-x86_64 ./export ./content
+# ../obsidian-export/target/debug/obsidian-export ./export ./content
+
+./obsidian-export ./export ./content
 
 pushd content
-sed -i 's/.md)/)/g' *.md
+sed -i 's/\\\[\[/\[\[/g' *.md
 popd
-
-
 
 yarn develop
